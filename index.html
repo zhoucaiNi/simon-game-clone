@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
 
-    <title> Light and Sound Memory Game </title>
+    <title>Light and Sound Memory Game</title>
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
@@ -15,24 +15,46 @@
   </head>
   <body>
     <!-- this is the start of content -->
-    <h1>
-       Light and Sound Memory Game
-    </h1>
-    <p>
-      Repeat the pattern to win the game!
-    </p>
-    <button id="startBtn" onclick="startGame()"> 
-      start
-    </button>
-    <button id="stopBtn" onclick="endGame()" class="hidden">
-      stop
-    </button >
-    
-    <div id="gameBtnArea" >
-      <button id="btn1" onclick="guess(1)" onmousedown="startTone(1)" onmouseup="stopTone()"> </button>
-      <button id="btn2" onclick="guess(2)" onmousedown="startTone(2)" onmouseup="stopTone()"> </button>
-      <button id="btn3" onclick="guess(3)" onmousedown="startTone(3)" onmouseup="stopTone()"> </button>
-      <button id="btn4" onclick="guess(4)" onmousedown="startTone(4)" onmouseup="stopTone()"> </button>
-    </div>
+    <h1>Light and Sound Memory Game</h1>
+    <p>Repeat the pattern to win the game!</p>
+    <center>
+      <div id="gameBtnArea">
+        <button
+          id="btn1"
+          onclick="guess(1)"
+          onmousedown="startTone(1)"
+          onmouseup="stopTone()"
+        ></button>
+        <button
+          id="btn2"
+          onclick="guess(2)"
+          onmousedown="startTone(2)"
+          onmouseup="stopTone()"
+        ></button>
+        <br />
+        <button
+          id="btn3"
+          onclick="guess(3)"
+          onmousedown="startTone(3)"
+          onmouseup="stopTone()"
+        ></button>
+        <button
+          id="btn4"
+          onclick="guess(4)"
+          onmousedown="startTone(4)"
+          onmouseup="stopTone()"
+        ></button>
+      </div>
+
+      <button id="startBtn" onclick="startGame()">START</button>
+      <button id="stopBtn" onclick="stopGame()" class="hidden">STOP</button>
+      <div id="strikeCounter" class="hidden">Lives Remaining:
+      <p id="hearts"> 
+         ♥ ♥ ♥ 
+      </p>
+        
+      </div>
+      
+    </center>
   </body>
 </html>

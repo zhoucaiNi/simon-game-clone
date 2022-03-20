@@ -5,18 +5,22 @@ var nextClueWaitTime = 1000;
 
 // Global Variables
 var pattern = [2, 2, 4, 3, 2, 1, 2, 4];
-// var pattern = [2, 2, 4]
+// var twinkle = [1,1,2,2,3,3,2,4,4];
+
 var progress = 0; //
 var gamePlaying = false;
 var tonePlaying = false;
 var volume = 0.5;
 var guessCounter = 0; // current guess counter
+var strikeCounter = 3;
 
 function startGame() {
   //initialize game variables
   progress = 0;
+  strikeCounter = 3;
   gamePlaying = true;
   // swap the Start and Stop buttons
+  document.getElementById("strikeCounter").classList.remove("hidden");
   document.getElementById("startBtn").classList.add("hidden");
   document.getElementById("stopBtn").classList.remove("hidden");
   playClueSequence();
@@ -26,6 +30,7 @@ function stopGame() {
   gamePlaying = false;
   document.getElementById("startBtn").classList.remove("hidden");
   document.getElementById("stopBtn").classList.add("hidden");
+  document.getElementById("strikeCounter").classList.add("hidden");
 }
 
 // Sound Synthesis Functions
@@ -35,6 +40,13 @@ const freqMap = {
   3: 392,
   4: 466.2,
 };
+
+// const freqMap = {
+//   1: 261.63, // C
+//   2: 392.00, // G
+//   3: 440.00, // A
+//   4: 349.23,  // F
+// };
 
 function playTone(btn, len) {
   o.frequency.value = freqMap[btn];
@@ -89,6 +101,11 @@ function playSingleClue(btn) {
 
 function playClueSequence() {
   guessCounter = 0;
+  clueHoldTime = clueHoldTime * .90;
+  document.getElementById("hearts").innerHTML = "";
+  for (let i = 0; i < strikeCounter; i++){
+    document.getElementById("hearts").innerHTML += "♥ ";
+  }
   context.resume();
   let delay = nextClueWaitTime; //set delay to initial wait time
   for (let i = 0; i <= progress; i++) {
@@ -134,7 +151,11 @@ function guess(btn) {
     } else {
       guessCounter++;
     }
-  } else {
+  } else if (strikeCounter > 1){
+    strikeCounter--;
+    playClueSequence()
+  }
+  else {
     loseGame();
   }
 }

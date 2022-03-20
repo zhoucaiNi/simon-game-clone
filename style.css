@@ -15,8 +15,10 @@ body {
   margin: 1rem;
   font-family: sans-serif;
   line-height: 1.5;
-  background-color: slategrey;
+  background-color: white;
   color: color;
+  display: inline;
+  justify-content: center;
 }
 
 /* images and videos max out at full width */
@@ -26,19 +28,34 @@ video {
   max-width: 100%;
 }
 
-h1 {
+h1,p {
   font-family: verdana, arial, sans-serif; 
+  text-align: center;
 }
 
 button{
   padding: 10px;
+/*   border-radius: 10px; */
+  background-color: white;
+  cursor: pointer;
+}
+
+#startBtn, #stopBtn{
+  margin-top:10px;
   border-radius: 10px;
+  width:100px;
+}
+
+#hearts {
+  display: inline;
+  color:red;
 }
 
 #gameBtnArea > button {
   width:200px;
   height:200px;
   margin:2px;
+  border:none;
 }
 
 .hidden {
