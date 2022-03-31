@@ -4,7 +4,7 @@ var cluePauseTime = 333;
 var nextClueWaitTime = 1000;
 
 // Global Variables
-var pattern = [2, 2, 4, 3, 2, 1, 2, 4];
+var pattern = [1, 2, 3, 4, 5, 6];
 // var twinkle = [1,1,2,2,3,3,2,4,4];
 
 var progress = 0; //
@@ -13,12 +13,19 @@ var tonePlaying = false;
 var volume = 0.5;
 var guessCounter = 0; // current guess counter
 var strikeCounter = 3;
+var day = true;
 
 function startGame() {
   //initialize game variables
   progress = 0;
   strikeCounter = 3;
   gamePlaying = true;
+
+  if (document.getElementById("patternLen").value.toLowerCase() != "n/a") {
+    let patternLen = parseInt(document.getElementById("patternLen").value);
+    generatePattern(patternLen);
+  }
+
   // swap the Start and Stop buttons
   document.getElementById("strikeCounter").classList.remove("hidden");
   document.getElementById("startBtn").classList.add("hidden");
@@ -39,6 +46,8 @@ const freqMap = {
   2: 329.6,
   3: 392,
   4: 466.2,
+  5: 499.4,
+  6: 533,
 };
 
 // const freqMap = {
@@ -101,9 +110,9 @@ function playSingleClue(btn) {
 
 function playClueSequence() {
   guessCounter = 0;
-  clueHoldTime = clueHoldTime * .90;
+  clueHoldTime = clueHoldTime * 0.9;
   document.getElementById("hearts").innerHTML = "";
-  for (let i = 0; i < strikeCounter; i++){
+  for (let i = 0; i < strikeCounter; i++) {
     document.getElementById("hearts").innerHTML += "♥ ";
   }
   context.resume();
@@ -151,11 +160,41 @@ function guess(btn) {
     } else {
       guessCounter++;
     }
-  } else if (strikeCounter > 1){
+  } else if (strikeCounter > 1) {
     strikeCounter--;
-    playClueSequence()
-  }
-  else {
+    playClueSequence();
+  } else {
     loseGame();
+  }
+}
+
+// generate a random sequence
+function generatePattern(len) {
+  pattern = [];
+  for (let i = 0; i < len; i++) {
+    pattern.push(getRandomInt(1, 6));
+  }
+}
+
+// adopted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// generates a random number between two numbers
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
+
+// night and day mode
+var r = document.querySelector(":root");
+function checkToggle() {
+  if (document.getElementById("themeToggle").checked) {
+    document.body.className = "dark-mode";
+    document.getElementById("");
+    console.log("dark mode");
+    r.style.setProperty("--borderProp", "5px solid black");
+  } else {
+    document.body.className = "light-mode";
+    console.log("light mode");
+    r.style.setProperty("--borderProp", "5px solid white");
   }
 }
