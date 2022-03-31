@@ -1,12 +1,28 @@
 /* a minimalist set of CSS resets */
 
+:root{
+  --borderProp: 5px solid white;
+}
+
 /* default to border-box */
 html {
   box-sizing: border-box;
   font-size: 16px;
 }
 
-*, *:before, *:after {
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -28,69 +44,191 @@ video {
   max-width: 100%;
 }
 
-h1,p {
-  font-family: verdana, arial, sans-serif; 
+h1,
+p {
+  font-family: verdana, arial, sans-serif;
   text-align: center;
 }
 
-button{
+button {
   padding: 10px;
-/*   border-radius: 10px; */
+  /*   border-radius: 10px; */
   background-color: white;
   cursor: pointer;
 }
 
-#startBtn, #stopBtn{
-  margin-top:10px;
+#startBtn,
+#stopBtn {
+  margin-top: 10px;
   border-radius: 10px;
-  width:100px;
+  width: 100px;
 }
 
 #hearts {
   display: inline;
-  color:red;
+  color: red;
 }
 
 #gameBtnArea > button {
-  width:200px;
-  height:200px;
-  margin:2px;
-  border:none;
+  width: 200px;
+  height: 200px;
+  margin: 2px;
+  border: none;
+  display: inline;
+}
+
+#gameBtnArea {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 
 .hidden {
   display: none;
 }
 
+/* Button 1 */
+
 #btn1 {
-    background: lightgreen;
+  background: #dc5b6e;
 }
 
-#btn1:active,#btn1.lit{
-  background:green;
+#btn1:active,
+#btn1.lit {
+  background: #f02c03;
+  outline: var(--borderProp);
+  outline-offset: -5px;
 }
+
+/* Button 2 */
 
 #btn2 {
-    background: lightblue;
+  background: #f19748;
 }
 
-#btn2:active,#btn2.lit{
-  background: blue;
+#btn2:active,
+#btn2.lit {
+  background: #ff950c;
+  outline: var(--borderProp);
+  outline-offset: -5px;
 }
 
-#btn3{
-    background:pink;
+/* Button 3 */
+
+#btn3 {
+  background: #ead04b;
 }
 
-#btn3:active,#btn3.lit{
-  background:red;
+#btn3:active,
+#btn3.lit {
+  background: #fedc03;
+  outline: var(--borderProp);
+  outline-offset: -5px;
 }
 
-#btn4{
-    background:lightyellow;
+/* Button 4 */
+
+#btn4 {
+  background: #55a973;
 }
 
-#btn4:active,#btn4.lit{
-  background:yellow
+#btn4:active,
+#btn4.lit {
+  background: #7cda01;
+  outline: var(--borderProp);
+  outline-offset: -5px;
 }
 
+/*  Button 5 */
+
+#btn5 {
+  background: #2d8fb6;
+}
+
+#btn5:active,
+#btn5.lit {
+  background: #0d8dff;
+  outline: var(--borderProp);
+  outline-offset: -5px;
+}
+
+/* Button 6 */
+
+#btn6 {
+  background: #6a54b4;
+}
+
+#btn6:active,
+#btn6.lit {
+  background: #b02ff7;
+  outline: var(--borderProp);
+  outline-offset: -5px;
+}
+
+/*  
+adapted from https://www.w3schools.com/howto/howto_css_switch.asp
+to inplement a button for darkmode
+*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cccccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.smallText{
+  color:grey;
+  font-size:13px;
+}

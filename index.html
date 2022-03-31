@@ -17,7 +17,12 @@
     <!-- this is the start of content -->
     <h1>Light and Sound Memory Game</h1>
     <p>Repeat the pattern to win the game!</p>
+
     <center>
+      <label class="switch">
+        <input type="checkbox" id="themeToggle" onchange="checkToggle()"/>
+        <span class="slider round"></span>
+      </label>
       <div id="gameBtnArea">
         <button
           id="btn1"
@@ -31,7 +36,6 @@
           onmousedown="startTone(2)"
           onmouseup="stopTone()"
         ></button>
-        <br />
         <button
           id="btn3"
           onclick="guess(3)"
@@ -44,17 +48,33 @@
           onmousedown="startTone(4)"
           onmouseup="stopTone()"
         ></button>
-      </div>
 
+        <button
+          id="btn5"
+          onclick="guess(5)"
+          onmousedown="startTone(5)"
+          onmouseup="stopTone()"
+        ></button>
+        <button
+          id="btn6"
+          onclick="guess(6)"
+          onmousedown="startTone(6)"
+          onmouseup="stopTone()"
+        ></button>
+      </div>
+      <p>
+         Enter the length of the pattern
+      </p>
+      <input type="text" id="patternLen" value="n/a" ><br> 
+      <p class="smallText">
+         (leave n/a for default)
+      </p>
       <button id="startBtn" onclick="startGame()">START</button>
       <button id="stopBtn" onclick="stopGame()" class="hidden">STOP</button>
-      <div id="strikeCounter" class="hidden">Lives Remaining:
-      <p id="hearts"> 
-         ♥ ♥ ♥ 
-      </p>
-        
+      <div id="strikeCounter" class="hidden">
+        Lives Remaining:
+        <p id="hearts">♥ ♥ ♥</p>
       </div>
-      
     </center>
   </body>
 </html>
